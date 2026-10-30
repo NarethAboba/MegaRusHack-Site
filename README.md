@@ -1,2 +1,2 @@
 # MegaRusHack-Site
-Official website of MegaRusHack — Naris Edition
+Official website of MegaRusHack — Nareth Edition

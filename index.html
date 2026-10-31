@@ -1,47 +1,602 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MegaRusHack — Naris Edition</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MegaRusHack — Nareth Edition</title>
+<meta name="description" content="MegaRusHack — Nareth Edition. Мощный и стабильный чит для Minecraft 1.21.10: максимум возможностей, без лишних действий.">
+<meta property="og:title" content="MegaRusHack — Nareth Edition">
+<meta property="og:description" content="Лёгкий менеджер для Minecraft 1.21.10 с поддержкой Fabric и Legacy Launcher.">
+<meta name="theme-color" content="#07030f">
+<link rel="preload" as="image" href="hero.png" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Cinzel:wght@500&family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080610;--panel:#171020;--purple:#a855f7;--violet:#7c3aed;--text:#f8f2ff;--muted:#b6a7c8;--line:#3b2851}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 "Segoe UI",Arial,sans-serif;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 70% 5%,#32134e88,transparent 42%),radial-gradient(ellipse at 10% 70%,#24104455,transparent 40%)}
-.progress{position:fixed;z-index:20;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#7c3aed,#e9d5ff);box-shadow:0 0 16px #a855f7}
-.wrap{max-width:1120px;margin:auto;padding:0 24px}nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff16;position:relative;z-index:2}
-.brand{font-weight:950;font-size:21px;letter-spacing:.2px}.brand span{color:#c084fc}.tag{border:1px solid #75469b;border-radius:30px;padding:8px 14px;color:#e9d5ff;font-size:11px;letter-spacing:2px}
-.hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding:65px 0 90px}
-.eyebrow{color:#c084fc;letter-spacing:3px;font-size:11px;font-weight:800}.hero h1{font-size:clamp(45px,7vw,82px);line-height:.94;letter-spacing:-4px;margin:18px 0 9px}.edition{color:#d8b4fe;letter-spacing:5px;font-weight:800}.lead{font-size:17px;line-height:1.8;color:var(--muted);max-width:530px;margin:24px 0 30px}
-.btn{display:inline-block;padding:14px 21px;border-radius:10px;background:linear-gradient(135deg,#9333ea,#6d28d9);color:white;font-weight:850;text-decoration:none;box-shadow:0 8px 32px #9333ea44;transition:transform .25s,box-shadow .25s}.btn:hover{transform:translateY(-4px);box-shadow:0 14px 38px #9333ea77}.btn.secondary{background:#ffffff08;border:1px solid #674481;box-shadow:none;margin-left:9px;color:#eadcff}
-.small{font-size:12px;color:#9585a8;margin-top:16px}
-.monitor{background:linear-gradient(145deg,#29183d,#0b0911);border:1px solid #75469b;border-radius:20px;padding:14px;box-shadow:0 25px 90px #6b21a844;transition:transform .5s,box-shadow .5s}
-.monitor:hover{transform:translateY(-7px) rotateY(-2deg);box-shadow:0 35px 100px #8b3bd466}.screen{background:#07060c;border-radius:12px;padding:20px;min-height:315px;font:13px/2 Consolas,monospace;color:#b8f7d2;position:relative;overflow:hidden}
-.screen:after{content:"";position:absolute;inset:-100% 0 auto;height:70%;background:linear-gradient(transparent,#a855f722,transparent);animation:scan 6s linear infinite}
-@keyframes scan{to{transform:translateY(600px)}}.screen b{color:#d8b4fe}.bar{color:#c084fc;border-bottom:1px solid #ffffff18;padding-bottom:12px;margin-bottom:14px}.mark{position:absolute;right:20px;bottom:15px;font-size:28px;font-weight:950;color:#c084fc;text-shadow:0 0 22px #a855f7}.status{font-size:10px;color:#bba9cf;display:flex;justify-content:space-between;margin-top:12px}
-section{padding:110px 0;border-top:1px solid #ffffff12;position:relative}.section-head{max-width:690px;margin-bottom:34px}h2{font-size:clamp(30px,4vw,43px);line-height:1.1;margin:0 0 13px}.sub{color:var(--muted);line-height:1.8;margin:0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.card{padding:25px;background:linear-gradient(145deg,#211632,#12101a);border:1px solid #49305f;border-radius:16px;min-height:190px;transition:transform .35s,border-color .35s,box-shadow .35s}.card:hover{transform:translateY(-8px);border-color:#a855f7;box-shadow:0 18px 45px #6b21a833}.card .ico{font-size:26px;color:#d8b4fe}.card h3{margin:14px 0 8px}.card p{color:var(--muted);font-size:14px;line-height:1.7;margin:0}
-.feature-band{margin-top:28px;padding:30px;border:1px solid #68418a;border-radius:17px;background:linear-gradient(100deg,#2a1741,#15101f);display:flex;justify-content:space-between;align-items:center;gap:25px}
-.step{font-size:26px;color:#c084fc;font-weight:900}.download{padding:35px;border:1px solid #75469b;border-radius:20px;background:radial-gradient(ellipse at 90% 20%,#51247788,transparent 55%),linear-gradient(110deg,#291741,#151020);position:relative;overflow:hidden}.download:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #c084fc44;border-radius:50%;right:-60px;top:-80px;box-shadow:0 0 0 25px #a855f711,0 0 0 55px #a855f70b;pointer-events:none}
-footer{padding:30px 0;color:#8f819e;font-size:12px;border-top:1px solid #ffffff15}
-.reveal{opacity:0;transform:translateY(65px) scale(.97);filter:blur(7px);transition:opacity .85s cubic-bezier(.2,.75,.2,1),transform .85s cubic-bezier(.2,.75,.2,1),filter .85s}
-.reveal.from-left{transform:translateX(-70px) scale(.98)}.reveal.from-right{transform:translateX(70px) scale(.98)}.reveal.visible{opacity:1;transform:translate(0) scale(1);filter:blur(0)}
-.card:nth-child(2){transition-delay:.10s}.card:nth-child(3){transition-delay:.20s}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding:55px 0}.cards{grid-template-columns:1fr}section{padding:75px 0}.feature-band{align-items:flex-start;flex-direction:column}.btn.secondary{margin:12px 0 0}.hero h1{letter-spacing:-2px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none;filter:none}}
-</style></head>
-<body><div class="progress" id="progress"></div><div class="wrap">
-<nav><div class="brand">Mega<span>Rus</span>Hack</div><div class="tag">NARIS EDITION</div></nav>
+:root{--bg:#07030f;--panel:rgba(14,7,32,.72);--line:rgba(168,85,247,.28);--violet:#a855f7;--magenta:#e879f9;--lilac:#d8c4ff;--text:#f1e9ff;--muted:#b0a2cc;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font:400 17px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+::selection{background:rgba(168,85,247,.5)}
+a:focus-visible,button:focus-visible,.brand:focus-visible{outline:2px solid var(--magenta);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* фон: hero.png + затемнение + размытие при прокрутке */
+.bg{position:fixed;left:-4%;top:-4%;width:108%;height:108vh;z-index:0;will-change:transform;background:#0a0418}
+.bg img{width:100%;height:100%;object-fit:cover;object-position:68% center;transform:scale(1.06)}
+.veil{position:fixed;inset:0;height:100vh;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(7,3,15,.92),rgba(7,3,15,.55) 52%,rgba(7,3,15,.12)),linear-gradient(0deg,var(--bg),transparent 28%)}
+.shade{position:fixed;inset:0;height:100vh;z-index:1;pointer-events:none;background:var(--bg);opacity:0}
+.light{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;z-index:2;pointer-events:none;opacity:0;transition:opacity .4s;will-change:transform;background:radial-gradient(circle,rgba(168,85,247,.2),transparent 68%)}
+.light.on{opacity:1}
+#fx{position:fixed;left:0;top:0;width:100%;height:100vh;z-index:3;pointer-events:none}
+
+/* шапка */
+header{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) max(clamp(16px,5vw,64px),env(safe-area-inset-right,0px)) 14px max(clamp(16px,5vw,64px),env(safe-area-inset-left,0px));border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+header.solid{background:rgba(7,3,15,.9);border-color:var(--line)}
+.menu{display:flex;gap:4px}
+.menu a{padding:8px 14px;border-radius:999px;color:var(--muted);text-decoration:none;font-weight:700;font-size:15px;transition:color .2s,background .2s}
+.menu a:hover,.menu a.on{color:var(--text);background:rgba(168,85,247,.17)}
+.burger{display:none;width:44px;height:44px;padding:0;border:1px solid var(--line);border-radius:10px;background:transparent;cursor:pointer;place-items:center;align-content:center;gap:5px}
+.burger span{display:block;width:20px;height:2px;background:var(--lilac);transition:transform .25s,opacity .25s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* прогресс: шкала справа (ПК) и полоска сверху (телефон) */
+.rail{position:fixed;right:22px;top:50%;translate:0 -50%;z-index:20;display:none;flex-direction:column;align-items:center;gap:18px;padding:14px 0}
+.rail::before,.rail i{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;translate:-50% 0;background:var(--line)}
+.rail i{background:linear-gradient(var(--violet),var(--magenta));transform-origin:top;transform:scaleY(0);box-shadow:0 0 10px var(--violet)}
+.rail a{position:relative;width:11px;height:11px;border-radius:50%;background:var(--bg);border:1px solid var(--violet);transition:.25s}
+.rail a.on{background:var(--magenta);border-color:var(--magenta);box-shadow:0 0 14px var(--magenta);scale:1.3}
+.rail a::after{content:attr(data-t);position:absolute;right:22px;top:50%;translate:6px -50%;opacity:0;white-space:nowrap;font-size:13px;font-weight:700;color:var(--lilac);pointer-events:none;transition:.25s}
+.rail a:hover::after,.rail a:focus-visible::after{opacity:1;translate:0 -50%}
+.bar{position:fixed;top:0;left:0;right:0;height:2px;z-index:30;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--violet),var(--magenta))}
+
+/* секции */
+section{position:relative;z-index:4;min-height:100vh;padding:120px clamp(20px,8vw,120px) 90px;display:flex;flex-direction:column;justify-content:center}
+h2{font:700 clamp(26px,4vw,50px)/1.12 Unbounded,sans-serif;max-width:18ch;margin-bottom:18px}
+.intro{color:var(--muted);max-width:56ch;margin-bottom:44px}
+.rv{opacity:0;translate:0 26px;transition:opacity .8s ease var(--d,0s),translate .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.rv.in{opacity:1;translate:0 0}
+
+/* hero */
+.hero{min-height:100vh;min-height:100svh}
+.hero-copy{max-width:780px}
+.tag{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);margin-bottom:14px}
+.badge{display:inline-block;padding:6px 14px;margin-bottom:22px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--lilac);background:rgba(168,85,247,.1)}
+.lead{font-size:clamp(19px,2.2vw,27px);font-weight:700;margin-bottom:8px}
+.lead span{color:var(--magenta)}
+.sub{color:var(--muted);max-width:48ch;margin-bottom:30px}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+.meta{font-size:14px;color:var(--muted)}
+.hint{position:absolute;left:50%;bottom:26px;translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;color:var(--muted);transition:opacity .4s}
+.hint b{width:20px;height:32px;border:1.5px solid var(--violet);border-radius:12px;position:relative}
+.hint b::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;border-radius:2px;background:var(--magenta);translate:-50% 0;animation:wheel 1.6s infinite}
+@keyframes wheel{to{opacity:0;translate:-50% 12px}}
+body.scrolled .hint{opacity:0}
+
+/* кнопки */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:15px 28px;border-radius:6px;border:1px solid var(--violet);font-weight:800;font-size:15px;text-decoration:none;text-transform:uppercase;letter-spacing:.04em;background:transparent;color:var(--text);cursor:pointer;transition:transform .2s ease-out,box-shadow .3s,background .3s,border-color .3s,scale .15s}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn.main{background:linear-gradient(90deg,#8b2cf5,#c026d3);border-color:transparent;box-shadow:0 0 24px rgba(168,85,247,.45)}
+.btn:active{scale:.97}
+.btn[aria-disabled=true]{opacity:.6;cursor:not-allowed;box-shadow:none}
+.btn[aria-disabled=true]::after{display:none}
+@media(hover:hover){.btn:hover::after{left:130%}.btn.main:hover{box-shadow:0 0 44px rgba(232,121,249,.75)}.btn.ghost:hover{background:rgba(168,85,247,.16);border-color:var(--magenta)}.btn[aria-disabled=true]:hover{box-shadow:none}}
+
+/* терминал */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.term{border:1px solid var(--line);border-radius:14px;background:rgba(5,2,12,.82);overflow:hidden;font:13.5px/1.7 ui-monospace,Consolas,monospace}
+.tbar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px}
+.tbar b{width:10px;height:10px;border-radius:50%;background:var(--violet);opacity:.6}
+.tbar span{margin-left:8px}
+.term pre{padding:16px 18px;overflow-x:auto;color:var(--lilac)}
+.term .dim{color:var(--muted)}
+
+/* карточки */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{position:relative;overflow:hidden;padding:32px 28px;border-radius:14px;background:var(--panel);border:1px solid var(--line);transition:opacity .8s ease var(--d,0s),translate .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .25s ease-out,border-color .3s,box-shadow .3s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--cx,50%) var(--cy,0%),rgba(168,85,247,.34),transparent 70%);opacity:0;transition:opacity .3s}
+.card::after{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--magenta),transparent);transform:scaleX(0);transition:transform .45s}
+.card>*{position:relative}
+.ico{display:inline-block;font-size:30px;color:var(--magenta);margin-bottom:18px;filter:drop-shadow(0 0 10px var(--magenta));transition:transform .35s}
+.card h3{font:700 20px Unbounded,sans-serif;margin-bottom:10px}
+.card p{color:var(--muted);font-size:16px}
+.card:active{border-color:var(--magenta)}
+.card:active::before{opacity:1}
+@media(hover:hover){.card:hover{border-color:rgba(232,121,249,.55);box-shadow:0 14px 40px -14px rgba(168,85,247,.6)}.card:hover::before{opacity:1}.card:hover::after{transform:scaleX(1)}.card:hover .ico{transform:translateY(-3px) scale(1.12) rotate(-6deg)}}
+
+/* шаги */
+.steps{position:relative}
+.steps::before,.steps::after{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:var(--line)}
+.steps::after{background:linear-gradient(90deg,var(--violet),var(--magenta));transform-origin:left;transform:scaleX(var(--p,0));box-shadow:0 0 12px var(--violet)}
+.step{position:relative;padding-top:56px}
+.step em{position:absolute;top:0;left:0;z-index:1;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--bg);border:1px solid var(--violet);font:700 14px Unbounded,sans-serif;font-style:normal;color:var(--lilac)}
+.step h3{font:700 20px Unbounded,sans-serif;margin-bottom:8px}
+.step p{color:var(--muted);max-width:30ch}
+
+.panel{max-width:760px;padding:clamp(24px,5vw,56px);border-radius:18px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(139,44,245,.2),rgba(14,7,32,.85))}
+.build{margin-top:22px;font:12px ui-monospace,Consolas,monospace;color:var(--muted)}
+footer{position:relative;z-index:4;padding:28px clamp(20px,8vw,120px) calc(40px + env(safe-area-inset-bottom,0px));font-size:13px;color:var(--muted);border-top:1px solid var(--line);background:rgba(7,3,15,.8)}
+
+/* логотип, меню и главный экран по макету */
+.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo img{display:block;height:52px;width:auto;filter:drop-shadow(0 0 10px rgba(168,85,247,.6))}
+.logo b{display:block;font:700 18px/1.1 Unbounded,sans-serif}
+.logo small{display:block;margin-top:5px;font:500 9px/1 Unbounded,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:var(--lilac)}
+.menu a{display:inline-flex;align-items:center;gap:8px}
+.hdr-tag{display:none;max-width:150px;font-size:12px;line-height:1.35;color:var(--muted)}
+.vert{position:fixed;right:17px;top:104px;z-index:20;display:none;writing-mode:vertical-rl;font:500 10px Unbounded,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);opacity:.7}
+.hero{padding-top:96px;padding-bottom:70px}
+.herologo{margin:0 0 16px}
+@keyframes float{50%{transform:translateY(-8px)}}
+.feats{display:flex;flex-wrap:wrap;gap:14px 28px;list-style:none;padding:0;margin:0 0 28px}
+.feats li{display:flex;align-items:center;gap:10px;max-width:150px;font-size:13px;line-height:1.3;color:var(--lilac)}
+.feats .i{width:26px;height:26px;color:var(--violet);filter:drop-shadow(0 0 6px var(--violet))}
+.btn{gap:10px}
+.meta+.badge{margin:14px 0 0}
+@media(min-width:861px){.vert{display:block}}
+@media(min-width:1180px){.hdr-tag{display:block}}
+@media(max-width:860px){.logo img{height:44px}.feats{gap:14px 18px}.feats li{flex:1 1 42%;max-width:none}}
+@media(max-width:520px){.logo b{font-size:15px}.logo small{letter-spacing:.24em}.herologo{margin-bottom:10px}}
+/* панель сверху, нарисованный логотип, девочка */
+header{background:rgba(7,3,15,.72);border-color:var(--line)}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--violet),var(--magenta),var(--violet),transparent)}
+.logo{padding:6px 30px 6px 14px;background:linear-gradient(90deg,rgba(124,58,237,.3),rgba(14,7,32,.75));clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%)}
+.menu{gap:2px}
+.menu a{border-radius:8px;padding:8px 12px;font-size:14px}
+.menu a.on{box-shadow:inset 0 -2px 0 var(--violet);background:rgba(168,85,247,.1)}
+.herologo svg{display:block;width:min(100%,600px);height:auto;overflow:visible;filter:drop-shadow(0 0 16px rgba(168,85,247,.75));animation:float 7s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 70s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lead{font-size:clamp(19px,2vw,25px)}
+.sub{font-size:clamp(16px,1.6vw,20px);color:var(--text)}
+.sub span{color:var(--violet)}
+.hero{position:relative}
+.hero-copy{position:relative;z-index:2}
+.girl{position:absolute;right:0;bottom:0;height:100%;width:min(58%,820px);z-index:1;pointer-events:none;will-change:transform;display:flex;align-items:flex-end;justify-content:flex-end}
+.girl::before{content:"";position:absolute;inset:8% 4% 0 8%;background:radial-gradient(closest-side,rgba(168,85,247,.38),transparent);filter:blur(10px)}
+.girl img{position:relative;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:right bottom;filter:drop-shadow(0 0 28px rgba(168,85,247,.45))}
+@media(max-width:1100px){.menu a .i{display:none}}
+@media(max-width:860px){.girl{width:100%;opacity:.5}.girl img{max-height:80%}.herologo svg{width:min(100%,420px)}}
+/* подробности */
+#details .split{align-items:start}
+.dsteps{list-style:none;padding:0;counter-reset:s;display:grid;gap:20px}
+.dsteps li{position:relative;padding:2px 0 2px 58px;color:var(--muted);counter-increment:s}
+.dsteps li::before{content:counter(s);position:absolute;left:0;top:0;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--violet);background:var(--bg);font:700 14px Unbounded,sans-serif;color:var(--lilac);box-shadow:0 0 14px rgba(168,85,247,.35)}
+.dsteps b{display:block;margin-bottom:2px;font-size:17px;color:var(--text)}
+.note{margin-top:36px;padding:clamp(22px,4vw,36px);border-radius:16px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(139,44,245,.18),rgba(14,7,32,.8))}
+.note h3{margin-bottom:10px;font:700 clamp(18px,2.4vw,26px)/1.2 Unbounded,sans-serif}
+.note p{max-width:70ch;color:var(--muted)}
+@media(min-width:861px){.rail{display:flex}.bar{display:none}header.solid{background:rgba(7,3,15,.72);backdrop-filter:blur(14px)}}
+@media(hover:none){.light{display:none}}
+@media(max-width:860px){
+ .burger{display:grid}
+ .menu{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 68px);flex-direction:column;gap:2px;padding:8px;border-radius:14px;background:rgba(10,5,22,.97);border:1px solid var(--line);opacity:0;visibility:hidden;translate:0 -8px;transition:opacity .25s,translate .25s,visibility .25s}
+ .menu.open{opacity:1;visibility:visible;translate:0 0}
+ .menu a{padding:14px 16px;border-radius:10px;font-size:16px}
+ section{min-height:auto;padding-block:92px 60px}
+ .hero{min-height:100vh;min-height:100svh}
+ .veil{background:linear-gradient(180deg,rgba(7,3,15,.55),rgba(7,3,15,.8) 60%,var(--bg))}
+ .bg img{object-position:72% center}
+ .hint{display:none}
+ .split{grid-template-columns:1fr}
+ .steps::before,.steps::after{display:none}
+ .step{padding:0 0 0 62px;margin-bottom:24px}
+ .intro{margin-bottom:30px}
+}
+@media(max-width:520px){.actions .btn{flex:1 1 100%}.card{padding:26px 22px}.term{font-size:12px}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,::before,::after{animation:none!important;transition:none!important}
+ .rv{opacity:1;translate:0 0}
+ #fx,.light{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
+<symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m-5-5l5 5 5-5M4 20h16"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7zM3 7l9 5 9-5M12 12v10"/></symbol>
+<symbol id="i-sync" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+<symbol id="i-go" viewBox="0 0 24 24"><path d="M5 12h14m-6-6l6 6-6 6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14m-6-6l6 6 6-6"/></symbol>
+</defs></svg>
+<div class="bg" id="bg" aria-hidden="true"><img id="bgImg" src="hero.png" alt="" decoding="async" fetchpriority="high"></div>
+<div class="veil" aria-hidden="true"></div>
+<div class="shade" id="shade" aria-hidden="true"></div>
+<div class="light" id="light" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="bar" id="bar" aria-hidden="true"></div>
+
+<header>
+  <a class="logo" href="#home" aria-label="MegaRusHack — Nareth Edition">
+    <img src="logo-sm.png" alt="" width="147" height="160"><span><b>MegaRusHack</b><span class="sr"> — </span><small>Nareth Edition</small></span>
+  </a>
+  <nav class="menu" id="menu" aria-label="Главное меню">
+    <a href="#home" data-s="home"><svg class="i"><use href="#i-home"/></svg>Главная</a>
+    <a href="#features" data-s="features"><svg class="i"><use href="#i-gear"/></svg>Функции</a>
+    <a href="#how" data-s="how"><svg class="i"><use href="#i-go"/></svg>Как скачивать</a>
+    <a href="#download" data-s="download"><svg class="i"><use href="#i-dl"/></svg>Скачать</a>
+    <a href="#details" data-s="details"><svg class="i"><use href="#i-help"/></svg>Подробности</a>
+  </nav>
+  <p class="hdr-tag">Больше, чем просто Minecraft...</p>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="vert" aria-hidden="true">Nareth Edition</div>
+
+<nav class="rail" aria-label="Разделы страницы">
+  <i></i>
+  <a href="#home" data-s="home" data-t="Главная" aria-label="Главная"></a>
+  <a href="#features" data-s="features" data-t="Функции" aria-label="Функции"></a>
+  <a href="#how" data-s="how" data-t="Как скачивать" aria-label="Как скачивать"></a>
+  <a href="#download" data-s="download" data-t="Скачать" aria-label="Скачать"></a>
+  <a href="#details" data-s="details" data-t="Подробности" aria-label="Подробности"></a>
+</nav>
+
 <main>
-<div class="hero"><div><div class="eyebrow">A NEW WAY TO LAUNCH MINECRAFT</div><h1>MegaRusHack</h1><div class="edition">NARIS EDITION</div><p class="lead">Твой Minecraft. Твои моды. Твой стиль. Лёгкий менеджер для Minecraft 1.21.10 с поддержкой Fabric и Legacy Launcher.</p><a class="btn" href="#download">СКОРО СКАЧАТЬ</a><a class="btn secondary" href="#features">ВОЗМОЖНОСТИ</a><p class="small">Закрытая бета · Первая цель — Minecraft 1.21.10</p></div>
-<div class="monitor"><div class="screen"><div class="bar">● ● ● <span style="float:right">MEGARUSHACK://CORE</span></div><b>&gt; INITIALIZING NARIS EDITION...</b><br>[ OK ] Theme: DARK_PURPLE<br>[ OK ] Minecraft: 1.21.10<br>[ OK ] Loader: Fabric<br>[ .. ] Legacy Launcher bridge<br>[ .. ] Mod manager<br>[ .. ] Resource pack manager<br><br><span style="color:#c084fc">&gt; SYSTEM READY_</span><br>01001101 01000101 01000111 01000001<div class="mark">MRH_</div></div><div class="status"><span>BUILD: BETA PREVIEW</span><span>THEME: DARK PURPLE</span></div></div></div>
-<section id="features"><div class="section-head reveal"><div class="eyebrow">CONTROL CENTER</div><h2>Всё под контролем</h2><p class="sub">Одна небольшая программа для управления установленной игрой. Прокручивай страницу — элементы плавно появляются, а при прокрутке вверх аккуратно исчезают обратно.</p></div><div class="cards"><article class="card reveal"><div class="ico">◈</div><h3>Моды</h3><p>Добавляй и организуй моды в папке выбранной сборки Minecraft.</p></article><article class="card reveal"><div class="ico">▧</div><h3>Ресурс-паки</h3><p>Устанавливай и переключай ресурс-паки без ручного поиска папок.</p></article><article class="card reveal"><div class="ico">▶</div><h3>Быстрый запуск</h3><p>Подготовка запуска через установленный Legacy Launcher — без повторной загрузки всей игры.</p></article></div>
-<div class="feature-band reveal from-right"><div><div class="eyebrow">YOUR SETUP · YOUR RULES</div><h2 style="font-size:26px;margin:8px 0">Только нужное. Ничего лишнего.</h2><p class="sub">MegaRusHack работает с выбранной установкой Minecraft.</p></div><div class="step">MRH / 01</div></div></section>
-<section id="setup"><div class="section-head reveal from-left"><div class="eyebrow">THREE SIMPLE STEPS</div><h2>Просто. Быстро. Независимо.</h2><p class="sub">Укажи папку Minecraft один раз — дальше управляй своей сборкой из одного места.</p></div><div class="cards"><article class="card reveal"><div class="step">01</div><h3>Установи</h3><p>Запусти Setup и выбери папку Minecraft.</p></article><article class="card reveal"><div class="step">02</div><h3>Настрой</h3><p>Проверь Fabric, добавь моды и ресурс-паки.</p></article><article class="card reveal"><div class="step">03</div><h3>Играй</h3><p>Запускай подготовленный профиль удобным способом.</p></article></div></section>
-<section id="download"><div class="download reveal"><div class="eyebrow">BETA ACCESS</div><h2 style="margin:9px 0">Стань первым тестером</h2><p class="sub" style="max-width:650px">Установщик пока в разработке. Кнопка скачивания станет активной после появления проверенной сборки.</p><div style="margin-top:22px"><span class="tag">DOWNLOAD · COMING SOON</span></div></div></section>
-</main><footer>© 2026 MegaRusHack — Naris Edition · Неофициальный фанатский проект, не связан с Mojang или Microsoft.</footer></div>
+<section id="home" class="hero">
+  <div class="hero-copy" id="heroCopy">
+    <h1 class="herologo rv"><svg viewBox="0 0 680 400" role="img" aria-label="MegaRusHack — Nareth Edition">
+      <defs>
+        <linearGradient id="gt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".38" stop-color="#ead7ff"/><stop offset=".72" stop-color="#b66bff"/><stop offset="1" stop-color="#7a2cf0"/></linearGradient>
+        <linearGradient id="gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a855f7" stop-opacity="0"/><stop offset="1" stop-color="#d8a8ff"/></linearGradient>
+        <radialGradient id="gr" cx=".5" cy=".5" r=".5"><stop offset=".55" stop-color="#7c3aed" stop-opacity="0"/><stop offset="1" stop-color="#a855f7" stop-opacity=".35"/></radialGradient>
+      </defs>
+      <circle cx="340" cy="186" r="158" fill="url(#gr)"/>
+      <circle cx="340" cy="186" r="150" fill="none" stroke="#a855f7" stroke-width="2" opacity=".85"/>
+      <circle class="spin" cx="340" cy="186" r="136" fill="none" stroke="#c084fc" stroke-width="7" stroke-dasharray="1.5 13" opacity=".7"/>
+      <circle cx="340" cy="186" r="120" fill="none" stroke="#a855f7" stroke-width="1" opacity=".6"/>
+      <path d="M340 0v44M340 128v30M184 186h22M474 186h22" stroke="#e9d5ff" stroke-width="2" stroke-linecap="round"/>
+      <path d="M340 -4l7 30-7 20-7-20z" fill="#e9d5ff"/>
+      <g transform="translate(340 100)">
+        <path d="M-50 20L-44-24-22 2 0-36 22 2 44-24 50 20z" fill="#2a0b57" stroke="#d8b4fe" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M-50 20h100" stroke="#e879f9" stroke-width="3"/>
+        <circle cx="-44" cy="-26" r="4" fill="#f5d0fe"/><circle cx="0" cy="-38" r="4.5" fill="#f5d0fe"/><circle cx="44" cy="-26" r="4" fill="#f5d0fe"/>
+      </g>
+      <text x="340" y="270" transform="translate(28 0) skewX(-7)" text-anchor="middle" textLength="590" lengthAdjust="spacingAndGlyphs" font-family="'Metal Mania','Pirata One',Impact,fantasy" font-size="112" fill="url(#gt)" stroke="#d8b4fe" stroke-width="1.4" paint-order="stroke">MegaRusHack</text>
+      <path d="M92 332h190" stroke="url(#gl)" stroke-width="1.6"/><path d="M588 332H398" stroke="url(#gl)" stroke-width="1.6"/>
+      <path d="M340 310l7 22-7 22-7-22z" fill="#c084fc"/>
+      <text x="316" y="340" text-anchor="end" font-family="Cinzel,Georgia,serif" font-size="25" letter-spacing="5" fill="#e9d5ff" style="text-transform:uppercase">Nareth</text>
+      <text x="364" y="340" font-family="Cinzel,Georgia,serif" font-size="25" letter-spacing="5" fill="#e9d5ff" style="text-transform:uppercase">Edition</text>
+    </svg></h1>
+    <p class="tag rv" style="--d:.1s">A new way to launch Minecraft</p>
+    <p class="lead rv" style="--d:.15s">Мощный и стабильный чит для Minecraft.</p>
+    <p class="sub rv" style="--d:.2s"><span>Максимум возможностей.</span> Без лишних действий.</p>
+    <ul class="feats rv" style="--d:.3s">
+      <li><svg class="i"><use href="#i-bolt"/></svg>Высокая производительность</li>
+      <li><svg class="i"><use href="#i-shield"/></svg>Полная защита</li>
+      <li><svg class="i"><use href="#i-gear"/></svg>Регулярные обновления</li>
+      <li><svg class="i"><use href="#i-star"/></svg>Стильный интерфейс</li>
+    </ul>
+    <div class="actions rv" style="--d:.4s">
+      <a class="btn main" href="#download" data-mag><svg class="i"><use href="#i-dl"/></svg>Скачать Launcher</a>
+      <a class="btn ghost" href="#details" data-mag>Подробнее<svg class="i"><use href="#i-down"/></svg></a>
+    </div>
+    <p class="meta rv" style="--d:.5s">Minecraft 1.21.10 • Fabric • Nareth Edition</p>
+    <p class="badge rv" style="--d:.55s">Закрытая бета • Первая цель — Minecraft 1.21.10</p>
+  </div>
+  <div class="girl rv" id="girl" aria-hidden="true"><img src="girl.png" alt="" width="695" height="742" decoding="async"></div>
+  <div class="hint" aria-hidden="true"><b></b>Прокрутите вниз</div>
+</section>
+
+<section id="features">
+  <h2 class="rv">Всё под контролем</h2>
+  <p class="intro rv" style="--d:.1s">Одна небольшая программа для управления установленной игрой.</p>
+  <div class="grid">
+    <div class="card rv" style="--d:.1s"><div class="ico">◈</div><h3>Моды</h3><p>Добавляй и организуй моды в папке выбранной сборки Minecraft.</p></div>
+    <div class="card rv" style="--d:.2s"><div class="ico">▧</div><h3>Ресурс-паки</h3><p>Устанавливай и переключай ресурс-паки без ручного поиска папок.</p></div>
+    <div class="card rv" style="--d:.3s"><div class="ico">▶</div><h3>Быстрый запуск</h3><p>Подготовка запуска через установленный Legacy Launcher — без повторной загрузки всей игры.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2 class="rv">Как скачивать: просто, быстро, независимо</h2>
+  <p class="intro rv" style="--d:.1s">Укажи папку Minecraft один раз — дальше управляй своей сборкой из одного места.</p>
+  <div class="steps" id="steps">
+    <div class="grid">
+      <div class="step rv" style="--d:.1s"><em>1</em><h3>Установи</h3><p>Запусти Setup и выбери папку Minecraft.</p></div>
+      <div class="step rv" style="--d:.25s"><em>2</em><h3>Настрой</h3><p>Проверь Fabric, добавь моды и ресурс-паки.</p></div>
+      <div class="step rv" style="--d:.4s"><em>3</em><h3>Играй</h3><p>Запускай подготовленный профиль удобным способом.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="panel rv">
+    <h2>Стань первым тестером</h2>
+    <p class="intro">Установщик пока в разработке. Кнопка скачивания станет активной после появления проверенной сборки.</p>
+    <a class="btn main" id="dlBtn" href="MegaRusHack-Nareth-Edition-Setup.exe" download="MegaRusHack-Nareth-Edition-Setup.exe" aria-disabled="true" data-mag>Скачать установщик · Coming Soon</a>
+    <p class="build">BUILD: BETA PREVIEW • THEME: DARK PURPLE</p>
+  </div>
+</section>
+<section id="details">
+  <h2 class="rv">Подробности: как это работает</h2>
+  <p class="intro rv" style="--d:.1s">MegaRusHack добавляется к уже установленному Minecraft как дополнение. Он ничего не скачивает, весит немного и работает от твоего Minecraft и Legacy Launcher.</p>
+  <div class="split">
+    <ol class="dsteps">
+      <li class="rv" style="--d:.05s"><b>Установи приложение</b>Запусти установщик MegaRusHack — Nareth Edition.</li>
+      <li class="rv" style="--d:.15s"><b>Укажи, где Minecraft</b>Выбери папку установленного Minecraft и Legacy Launcher.</li>
+      <li class="rv" style="--d:.25s"><b>Открой папку Minecraft</b>В Legacy Launcher или в нашем приложении нажми «Папка Minecraft» — откроется папка игры.</li>
+      <li class="rv" style="--d:.35s"><b>Добавь моды, шейдеры и ресурс-паки</b>Закинь нужные файлы в эту папку, если они тебе нужны.</li>
+      <li class="rv" style="--d:.45s"><b>Играй</b>Всё работает от уже установленной игры.</li>
+    </ol>
+    <div class="term rv" style="--d:.2s" role="img" aria-label="Консоль загрузки MegaRusHack — Nareth Edition">
+      <div class="tbar"><b></b><b></b><b></b><span>MEGARUSHACK://CORE</span></div>
+<pre>&gt; Initializing Nareth Edition...
+[ OK ] Theme: DARK_PURPLE
+[ OK ] Minecraft: 1.21.10
+[ OK ] Loader: Fabric
+<span class="dim">[ .. ] Legacy Launcher bridge
+[ .. ] Mod manager
+[ .. ] Resource pack manager</span>
+&gt; SYSTEM READY_</pre>
+    </div>
+  </div>
+  <div class="note rv">
+    <h3>Только нужное. Ничего лишнего.</h3>
+    <p>MegaRusHack работает с выбранной установкой Minecraft. Твой Minecraft. Твои моды. Твой стиль. Лёгкий менеджер для Minecraft 1.21.10 с поддержкой Fabric и Legacy Launcher.</p>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 MegaRusHack — Nareth Edition. Неофициальный фанатский проект, не связан с Mojang или Microsoft.</footer>
+
 <script>
-const progress=document.getElementById('progress');
-const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%'};addEventListener('scroll',updateProgress,{passive:true});updateProgress();
-const observer=new IntersectionObserver(entries=>{for(const entry of entries){entry.target.classList.toggle('visible',entry.isIntersecting)}},{threshold:.14,rootMargin:'0px 0px -7% 0px'});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-</script></body></html>
+(() => {
+'use strict';
+
+/* ===== УСТАНОВЩИК =====
+   Сейчас кнопка «Скачать установщик» — заглушка (Coming Soon).
+   Когда файл MegaRusHack-Nareth-Edition-Setup.exe будет лежать рядом с index.html,
+   поменяй false на true — и кнопка станет рабочей. */
+const INSTALLER_READY = false;
+const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const root = document.documentElement;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const bgEl = $('#bg'), bgImg = $('#bgImg'), shade = $('#shade'), light = $('#light'), hdr = $('header'), girl = $('#girl');
+const railFill = $('.rail i'), bar = $('#bar'), hero = $('#heroCopy'), steps = $('#steps'), cv = $('#fx'), c = cv.getContext('2d');
+
+/* меню на телефоне */
+const burger = $('.burger'), menu = $('#menu');
+const setMenu = o => { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', String(o)); };
+burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+/* появление при прокрутке вниз, исчезновение при прокрутке вверх */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('in');
+  else if (e.boundingClientRect.top > 0) e.target.classList.remove('in');
+}), { threshold: .12 });
+$$('.rv').forEach(el => reduce ? el.classList.add('in') : io.observe(el));
+
+/* активный раздел */
+const links = $$('[data-s]');
+const so = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.dataset.s === e.target.id));
+}), { rootMargin: '-45% 0px -45% 0px' });
+$$('main section').forEach(s => so.observe(s));
+
+/* спрайты: рисуем один раз, потом только копируем */
+const sprite = (sz, draw) => { const s = document.createElement('canvas'); s.width = s.height = sz; draw(s.getContext('2d'), sz); return s; };
+const dotS = sprite(32, (g, z) => {
+  const r = z / 2, gr = g.createRadialGradient(r, r, 0, r, r, r);
+  gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.18, 'rgba(232,170,255,.95)');
+  gr.addColorStop(.5, 'rgba(168,85,247,.28)'); gr.addColorStop(1, 'rgba(168,85,247,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, z, z);
+});
+const glyph = ch => sprite(24, (g, z) => {
+  g.font = '700 13px ui-monospace,Consolas,monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.shadowColor = '#c084fc'; g.shadowBlur = 6; g.fillStyle = '#ead7ff'; g.fillText(ch, z / 2, z / 2);
+});
+const glyphS = [glyph('0'), glyph('1')];
+const SF = ['rgba(124,58,237,.22)', 'rgba(168,85,247,.16)', 'rgba(91,33,182,.3)'];
+const SS = ['rgba(196,148,255,.75)', 'rgba(232,121,249,.6)', 'rgba(167,139,250,.55)'];
+const SEG = ['rgba(139,92,246,.16)', 'rgba(168,85,247,.3)', 'rgba(216,150,255,.5)'];
+
+/* осколки и частицы */
+const rnd = (a, b) => a + Math.random() * (b - a);
+const wrap = (v, s, p) => ((v % s) + s) % s - p;
+let W = 0, H = 0, maxS = 1, parts = [], shards = [];
+function mkPart() {
+  const x = rnd(0, W), y = rnd(0, H), r = Math.random();
+  return { x, y, X: x, Y: y, bx: rnd(-.12, .12), by: rnd(-.3, -.05), vx: 0, vy: 0, z: rnd(.2, 1), g: r < .2 ? 1 : r < .4 ? 2 : 0, ph: rnd(0, 6.28) };
+}
+function mkShard(i) {
+  const n = Math.random() < .4 ? 4 : 3, s = rnd(12, 34), v = [];
+  for (let j = 0; j < n; j++) { const a = j / n * 6.283 + rnd(-.45, .45), r = s * rnd(.5, 1); v.push(Math.cos(a) * r, Math.sin(a) * r * rnd(.6, 1)); }
+  const x = rnd(0, W), y = rnd(0, H);
+  return { x, y, X: x, Y: y, bx: rnd(-.1, .1), by: rnd(-.2, .03), vx: 0, vy: 0, r: rnd(0, 6.28), vr: 0, z: rnd(.3, 1), k: i % 3, v };
+}
+function build() {
+  const m = innerWidth < 700;
+  const np = Math.min(m ? 34 : 72, Math.round(W * H / (m ? 14000 : 20000))), ns = m ? 9 : 18;
+  while (parts.length < np) parts.push(mkPart());
+  parts.length = np;
+  while (shards.length < ns) shards.push(mkShard(shards.length));
+  shards.length = ns;
+}
+const upd = () => { maxS = Math.max(1, root.scrollHeight - innerHeight); };
+function size() {
+  const D = Math.min(devicePixelRatio || 1, fine ? 2 : 1.5), w = innerWidth, h = cv.clientHeight || innerHeight;
+  if (w === W && h === H) return;
+  W = w; H = h; cv.width = Math.round(W * D); cv.height = Math.round(H * D);
+  c.setTransform(D, 0, 0, D, 0, 0); build(); upd();
+}
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(size, 150); });
+addEventListener('load', upd);
+if ('ResizeObserver' in window) new ResizeObserver(upd).observe(document.body);
+size();
+
+/* курсор */
+let mx = -9999, my = -9999, cx = -9999, cy = -9999, lightOn = false;
+addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+addEventListener('pointerdown', e => { mx = e.clientX; my = e.clientY; burst(mx, my); }, { passive: true });
+addEventListener('pointerup', e => { if (e.pointerType === 'touch') setTimeout(() => { mx = my = -9999; }, 500); }, { passive: true });
+root.addEventListener('mouseleave', () => { mx = my = -9999; });
+function burst(x, y) {
+  if (reduce) return;
+  for (const arr of [shards, parts]) for (const p of arr) {
+    const dx = p.X - x, dy = p.Y - y, d = Math.hypot(dx, dy);
+    if (d < 260 && d > 1) { const f = (1 - d / 260) * 9; p.vx += dx / d * f; p.vy += dy / d * f; if (p.vr !== undefined) p.vr += (dx > 0 ? 1 : -1) * f * .02; }
+  }
+}
+
+/* кадр: все изменения собраны в одном месте */
+let bl = 0, lastBq = -1, lastP = -1, lastHo = -1, lastSp = -1, solid = false, scrolled = false, ppx = 0;
+const segs = [[], [], []], cl = [];
+function render(t, k, anim) {
+  const y = scrollY, ih = innerHeight;
+  let sp = lastSp;
+  if (steps) { const r = steps.getBoundingClientRect(); sp = Math.max(0, Math.min(1, (ih * .8 - r.top) / (r.height + ih * .3))); }
+  const active = mx > -1000;
+
+  /* размытие фона при прокрутке */
+  bl += (Math.min(1, y / (ih * 1.1)) - bl) * Math.min(1, .12 * k);
+  const bq = Math.round(bl * (innerWidth < 700 ? 6 : 10) * 4) / 4;
+  if (bq !== lastBq) { lastBq = bq; bgImg.style.filter = bq ? 'blur(' + bq + 'px)' : ''; shade.style.opacity = (bl * .6).toFixed(3); }
+  ppx += ((active && fine ? (cx / W - .5) * -16 : 0) - ppx) * Math.min(1, .08 * k);
+  bgEl.style.transform = 'translate3d(' + ppx.toFixed(1) + 'px,' + (-y * .05).toFixed(1) + 'px,0)';
+
+  if (girl) girl.style.transform = 'translate3d(' + (ppx * -1.6).toFixed(1) + 'px,' + (-y * .1).toFixed(1) + 'px,0)';
+  const s = y > 20; if (s !== solid) { solid = s; hdr.classList.toggle('solid', s); }
+  const sc = y > 60; if (sc !== scrolled) { scrolled = sc; document.body.classList.toggle('scrolled', sc); }
+  const p = Math.min(1, y / maxS);
+  if (Math.abs(p - lastP) > .001) { lastP = p; railFill.style.transform = 'scaleY(' + p + ')'; bar.style.transform = 'scaleX(' + p + ')'; }
+  const ho = Math.max(0, 1 - y / 650);
+  if (ho !== lastHo) { lastHo = ho; hero.style.opacity = ho; hero.style.transform = 'translate3d(0,' + (-y * .1).toFixed(1) + 'px,0)'; }
+  if (steps && Math.abs(sp - lastSp) > .002) { lastSp = sp; steps.style.setProperty('--p', sp.toFixed(3)); }
+  if (!anim) return;
+
+  /* курсор и подсветка */
+  if (active) { if (cx < -1000) { cx = mx; cy = my; } else { const a = Math.min(1, .25 * k); cx += (mx - cx) * a; cy += (my - cy) * a; } }
+  else cx = cy = -9999;
+  if (active !== lightOn) { lightOn = active; light.classList.toggle('on', active); }
+  if (active && fine) light.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)';
+
+  /* физика: осколки разлетаются от курсора */
+  const dmp = Math.pow(.95, k), sOff = y * .25, R = 170, R2 = R * R, PR = 140, PR2 = PR * PR;
+  for (const q of shards) {
+    q.X = wrap(q.x, W + 120, 60); q.Y = wrap(q.y - sOff * q.z, H + 120, 60);
+    if (active) {
+      const dx = q.X - cx, dy = q.Y - cy, d2 = dx * dx + dy * dy;
+      if (d2 < R2 && d2 > 1) { const d = Math.sqrt(d2), f = (1 - d / R) * (1 - d / R) * 1.6 * k; q.vx += dx / d * f; q.vy += dy / d * f; q.vr += (dx > 0 ? 1 : -1) * f * .012; }
+    }
+    q.x += (q.bx + q.vx) * k; q.y += (q.by + q.vy) * k; q.r += (q.vr + .004 * q.z) * k;
+    q.vx *= dmp; q.vy *= dmp; q.vr *= dmp;
+  }
+  for (const q of parts) {
+    q.X = wrap(q.x, W + 60, 30); q.Y = wrap(q.y - sOff * q.z * .8, H + 60, 30);
+    if (active) {
+      const dx = q.X - cx, dy = q.Y - cy, d2 = dx * dx + dy * dy;
+      if (d2 < PR2 && d2 > 1) { const d = Math.sqrt(d2), f = (1 - d / PR) * (1 - d / PR) * 1.1 * k; q.vx += dx / d * f; q.vy += dy / d * f; }
+    }
+    q.x += (q.bx + q.vx) * k; q.y += (q.by + q.vy) * k; q.vx *= dmp; q.vy *= dmp;
+  }
+
+  /* рисование */
+  c.clearRect(0, 0, W, H);
+  c.lineWidth = 1;
+  for (let g = 0; g < 3; g++) {
+    c.beginPath();
+    for (const q of shards) {
+      if (q.k !== g) continue;
+      const cs = Math.cos(q.r), sn = Math.sin(q.r), v = q.v;
+      for (let i = 0; i < v.length; i += 2) {
+        const px = q.X + v[i] * cs - v[i + 1] * sn, py = q.Y + v[i] * sn + v[i + 1] * cs;
+        if (i) c.lineTo(px, py); else c.moveTo(px, py);
+      }
+      c.closePath();
+    }
+    c.fillStyle = SF[g]; c.fill(); c.strokeStyle = SS[g]; c.stroke();
+  }
+
+  const LD = innerWidth < 700 ? 95 : 120, LD2 = LD * LD, CR2 = 170 * 170;
+  segs[0].length = segs[1].length = segs[2].length = cl.length = 0;
+  for (let i = 0; i < parts.length; i++) {
+    const a = parts[i];
+    for (let j = i + 1; j < parts.length; j++) {
+      const b = parts[j], dx = a.X - b.X, dy = a.Y - b.Y, d2 = dx * dx + dy * dy;
+      if (d2 < LD2) segs[d2 < LD2 * .25 ? 2 : d2 < LD2 * .6 ? 1 : 0].push(a.X, a.Y, b.X, b.Y);
+    }
+    if (active) { const dx = a.X - cx, dy = a.Y - cy; if (dx * dx + dy * dy < CR2) cl.push(a.X, a.Y); }
+  }
+  c.lineWidth = .8;
+  for (let b = 0; b < 3; b++) {
+    const a = segs[b]; c.beginPath();
+    for (let i = 0; i < a.length; i += 4) { c.moveTo(a[i], a[i + 1]); c.lineTo(a[i + 2], a[i + 3]); }
+    c.strokeStyle = SEG[b]; c.stroke();
+  }
+  if (cl.length) {
+    c.beginPath();
+    for (let i = 0; i < cl.length; i += 2) { c.moveTo(cx, cy); c.lineTo(cl[i], cl[i + 1]); }
+    c.strokeStyle = 'rgba(240,171,252,.5)'; c.stroke();
+  }
+  c.globalCompositeOperation = 'lighter';
+  for (const q of parts) {
+    const fl = Math.sin(t * .002 + q.ph);
+    if (q.g === 0) { const d = 8 + q.z * 10; c.globalAlpha = .4 + .45 * Math.abs(fl); c.drawImage(dotS, q.X - d / 2, q.Y - d / 2, d, d); }
+    else { c.globalAlpha = fl > .55 ? .95 : .35; c.drawImage(glyphS[q.g - 1], q.X - 12, q.Y - 12); }
+  }
+  c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
+}
+
+/* цикл: 60 кадров на ПК, 30 на телефоне, пауза в фоновой вкладке */
+let last = 0; const minDt = fine ? 0 : 22;
+function loop(t) {
+  requestAnimationFrame(loop);
+  if (document.hidden) return;
+  const dt = t - last; if (dt < minDt) return;
+  last = t; render(t, Math.min(dt / 16.67, 3), true);
+}
+if (reduce) {
+  let q = 0; const kick = () => { if (!q) q = requestAnimationFrame(() => { q = 0; render(0, 10, false); }); };
+  addEventListener('scroll', kick, { passive: true }); kick();
+} else requestAnimationFrame(loop);
+
+/* наведение: наклон карточек и «магнитные» кнопки (только мышь) */
+if (fine && !reduce) {
+  $$('.card').forEach(el => {
+    let raf = 0;
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        el.style.setProperty('--cx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--cy', (y * 100).toFixed(1) + '%');
+        el.style.transform = 'perspective(800px) rotateX(' + ((.5 - y) * 8).toFixed(2) + 'deg) rotateY(' + ((x - .5) * 10).toFixed(2) + 'deg)';
+      });
+    });
+    el.addEventListener('pointerleave', () => { cancelAnimationFrame(raf); el.style.transform = ''; });
+  });
+  $$('[data-mag]').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      if (el.getAttribute('aria-disabled') === 'true') return;
+      const r = el.getBoundingClientRect();
+      el.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .2).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * .3).toFixed(1) + 'px)';
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+  });
+}
+
+/* кнопка установщика: заглушка или рабочая ссылка */
+const dlBtn = $('#dlBtn');
+if (INSTALLER_READY && dlBtn) { dlBtn.removeAttribute('aria-disabled'); dlBtn.textContent = 'Скачать установщик'; }
+
+/* неактивная кнопка не прыгает по якорю */
+$$('[aria-disabled=true]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+})();
+</script>
+</body>
+</html>
